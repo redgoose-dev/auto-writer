@@ -1,0 +1,55 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+body, button, input, textarea, select {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: none;
+  color: #222;
+}
+code, kbd, pre, samp {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.wrapper {
+  border: 1px solid #000;
+}
+.title {
+  margin: 0;
+}
+.description {
+  margin: 0;
+}
+.demo {
+  border: 1px solid #000;
+}
+.demo > p {
+  margin: 0;
+}
+
+/* github banner */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%, 100% { transform: rotate(0); }
+  20%, 60% { transform:rotate(-25deg); }
+  40%, 80% { transform:rotate(10deg); }
+}
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm { animation:none; }
+  .github-corner .octo-arm { animation: octocat-wave 560ms ease-in-out; }
+}

@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "removeComments": false
+  }
+}
