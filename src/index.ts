@@ -25,7 +25,6 @@ class core {
   private tickFrame: number = 0;
   private fn: Function;
   private requestId: any = undefined; // `requestAnimationFrame`, `setInterval`에서의 id값
-  private pattern: string = 'abcdefghijklmnopqrstuvwxyz0123456789-_!@#$%^&*()+~<>'; // 랜덤으로 반하는 문자의 목록
 
   constructor(options: coreInterface)
   {
@@ -39,13 +38,14 @@ class core {
   updateOptions(options: coreInterface = {})
   {
     this.options = Object.assign({
-      speed: 5,
-      speedNext: 2,
+      speed: 2,
+      speedNext: 4,
       shuffle: false,
       offset: 2,
       firstChar: '-',
       firstCharOffset: 4,
       exclude: [],
+      pattern: 'abcdefghijklmnopqrstuvwxyz0123456789-_!@#$%^&*()+~<>', // 랜덤으로 반하는 문자의 목록
       colors: [
         '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
         '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50',
@@ -126,8 +126,8 @@ class core {
    */
   private randomWord(): string
   {
-    const randomNumber = Math.floor(Math.random() * this.pattern.length);
-    return this.pattern.substring(randomNumber, randomNumber + 1);
+    const randomNumber = Math.floor(Math.random() * this.options.pattern.length);
+    return this.options.pattern.substring(randomNumber, randomNumber + 1);
   }
 
   public run(keyword:string, callback:Function = null): void
@@ -168,7 +168,10 @@ class core {
     if (this.useRequestAnimation)
     {
       // requestAnimation
-      if (this.requestId) window.cancelAnimationFrame(this.requestId);
+      if (this.requestId)
+      {
+        window.cancelAnimationFrame(this.requestId);
+      }
       this.requestId = window.requestAnimationFrame(this.tick.bind(this));
     }
     else

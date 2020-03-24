@@ -6,13 +6,13 @@ function basic()
   const message = $demo.innerText;
   const autoWriter = new AutoWriter.core({
     speed: 2,
-    speedNext: 4,
-    offset: 6,
-    firstCharOffset: 12,
-    shuffle: false,
-    firstChar: '-',
-    exclude: [],
-    output: 'object',
+    // speedNext: 4,
+    // offset: 6,
+    // firstCharOffset: 12,
+    // shuffle: false,
+    // firstChar: '~',
+    // exclude: [],
+    // output: 'object',
     //engine: 'setInterval', // requestAnimationFrame,setInterval
   });
 
@@ -32,7 +32,8 @@ function basic()
   function run()
   {
     autoWriter.run(message, (res) => {
-      append(res);
+      // append(res);
+      $demo.innerHTML = res;
     });
   }
 
