@@ -103,11 +103,11 @@ class core {
             label: str,
             color: colors[n],
           };
-        }));
+        }), this.requestId);
         break;
       case 'string':
       default:
-        this.fn(this.newKeyword.join(''));
+        this.fn(this.newKeyword.join(''), this.requestId);
         break;
     }
   }

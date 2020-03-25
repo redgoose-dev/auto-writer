@@ -6,7 +6,8 @@
     "dev": "webpack-dev-server --mode development",
     "prebuild": "rm -rf dist/",
     "build": "webpack --mode production && cp dist/AutoWriter.js docs/",
-    "preview-docs": "http-server docs/ -a 0.0.0.0 -p 4000 -s"
+    "preview-docs": "http-server docs/ -a 0.0.0.0 -p 4000 -s",
+    "version-patch": "npm version patch"
   },
   "license": "MIT",
   "devDependencies": {

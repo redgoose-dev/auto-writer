@@ -56,7 +56,7 @@ const core = (env, options) => {
      * Production
      */
     config.output = {
-      filename: 'AutoWriter.js',
+      filename: libraryName + '.js',
       path: path.resolve(__dirname, 'dist'),
       library: libraryName,
       libraryTarget: 'umd',
