@@ -29,6 +29,10 @@ main {
   margin: 0 auto;
   box-sizing: border-box;
 }
+::selection {
+  background-color: #222;
+  color: white;
+}
 
 .title {
   margin: 0;
@@ -129,6 +133,11 @@ section > p {
   .github-corner .octo-arm { animation: octocat-wave 560ms ease-in-out; }
 }
 
+@media (min-width: 768px) {
+  body {
+    padding: 0 32px;
+  }
+}
 @media (min-width: 1024px) {
   .title {
     font-size: 42px;
