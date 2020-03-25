@@ -1,7 +1,7 @@
 {
   "name": "auto-writer",
-  "version": "1.0.0",
-  "main": "dist/auto-writer.js",
+  "version": "1.0.1",
+  "main": "dist/AutoWriter.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "prebuild": "rm -rf dist/",
@@ -20,6 +20,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "auto-writer": "^1.0.0",
     "http-server": "^0.12.1"
   }
 }

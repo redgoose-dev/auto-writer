@@ -1,0 +1,5 @@
+docs/
+dev/
+
+webpack.config.js
+tsconfig.json
