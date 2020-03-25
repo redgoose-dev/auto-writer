@@ -6,13 +6,13 @@ function basic()
   const message = $demo.innerText;
   const autoWriter = new AutoWriter.core({
     speed: 2,
-    // speedNext: 4,
-    // offset: 6,
-    // firstCharOffset: 12,
-    // shuffle: false,
-    // firstChar: '~',
-    // exclude: [],
-    // output: 'object',
+    speedNext: 5,
+    offset: 10,
+    firstCharOffset: 0,
+    shuffle: false,
+    firstChar: '~',
+    exclude: [],
+    output: 'object',
     //engine: 'setInterval', // requestAnimationFrame,setInterval
   });
 
@@ -32,8 +32,7 @@ function basic()
   function run()
   {
     autoWriter.run(message, (res) => {
-      // append(res);
-      $demo.innerHTML = res;
+      append(res);
     });
   }
 
@@ -47,10 +46,11 @@ function wrapper()
 {
   const $demo = document.querySelector('.wrapper .demo-text');
   const message = $demo.innerText;
+  let instance = null;
 
   function run()
   {
-    AutoWriter.wrap(message, {
+    instance = AutoWriter.wrap(message, {
       speed: 2,
       speedNext: 4,
       offset: 6,
@@ -60,7 +60,7 @@ function wrapper()
       exclude: [' '],
     }, (res) => {
       $demo.innerHTML = res;
-    });
+    }, instance);
   }
 
   // button event

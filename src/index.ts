@@ -35,27 +35,10 @@ class core {
     this.useRequestAnimation = !!(window && window.requestAnimationFrame) ? this.useRequestAnimation : false;
   }
 
-  updateOptions(options: coreInterface = {})
-  {
-    this.options = Object.assign({
-      speed: 2,
-      speedNext: 4,
-      shuffle: false,
-      offset: 2,
-      firstChar: '-',
-      firstCharOffset: 4,
-      exclude: [],
-      pattern: 'abcdefghijklmnopqrstuvwxyz0123456789-_!@#$%^&*()+~<>', // 랜덤으로 반하는 문자의 목록
-      colors: [
-        '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
-        '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50',
-        '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800',
-        '#ff5722', '#795548', '#9e9e9e', '#607d8b',
-      ],
-      output: 'string',
-    }, options);
-  }
-
+  /**
+   * tick
+   * 특정 타이밍에 문자를 변하게 하기위한 처리
+   */
   private tick(): void
   {
     if (this.characterFrame >= this.keyword.length) return;
@@ -78,6 +61,10 @@ class core {
     }
   }
 
+  /**
+   * make
+   * 문자를 만드는 과정
+   */
   private make(): void
   {
     let colors = Array(this.keyword.length).fill(undefined);
@@ -98,20 +85,23 @@ class core {
     switch (this.options.output)
     {
       case 'object':
-        this.fn(this.newKeyword.map((str: string, n: number) => {
-          return {
-            label: str,
-            color: colors[n],
-          };
-        }), this.requestId);
+        this.fn(this.newKeyword.map((str: string, n: number) => ({
+          label: str,
+          color: colors[n],
+        })));
         break;
       case 'string':
       default:
-        this.fn(this.newKeyword.join(''), this.requestId);
+        this.fn(this.newKeyword.join(''));
         break;
     }
   }
 
+  /**
+   * next character
+   *
+   * 다음 문자로 넘어가기위한 준비작업
+   */
   private nextCharacter()
   {
     this.newKeyword[this.keywordAddress[0]] = this.keyword[this.keywordAddress[0]];
@@ -121,6 +111,7 @@ class core {
 
   /**
    * get random word
+   * 무작위 문자를 가져온다.
    *
    * @return {string}
    */
@@ -130,8 +121,43 @@ class core {
     return this.options.pattern.substring(randomNumber, randomNumber + 1);
   }
 
+  /**
+   * update options
+   * 옵션을 업데이트한다.
+   *
+   * @param {coreInterface} options
+   */
+  public updateOptions(options: coreInterface = {})
+  {
+    this.options = Object.assign({
+      speed: 2,
+      speedNext: 4,
+      shuffle: false,
+      offset: 2,
+      firstChar: '-',
+      firstCharOffset: 4,
+      exclude: [],
+      pattern: 'abcdefghijklmnopqrstuvwxyz0123456789-_!@#$%^&*()+~<>', // 랜덤으로 반하는 문자의 목록
+      colors: [
+        '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
+        '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50',
+        '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800',
+        '#ff5722', '#795548', '#9e9e9e', '#607d8b',
+      ],
+      output: 'string',
+    }, options);
+  }
+
+  /**
+   * run animation
+   * 애니메이션 실행
+   *
+   * @param {string} keyword
+   * @param {Function} callback 매번 실행되는 콜백함수
+   */
   public run(keyword:string, callback:Function = null): void
   {
+    if (this.requestId) this.stop(this.requestId);
     this.fn = callback;
     this.keyword = Array.from(keyword);
     if (this.options.firstCharOffset > 0)
@@ -167,34 +193,55 @@ class core {
     // play animation
     if (this.useRequestAnimation)
     {
-      // requestAnimation
-      if (this.requestId)
-      {
-        window.cancelAnimationFrame(this.requestId);
-      }
       this.requestId = window.requestAnimationFrame(this.tick.bind(this));
     }
     else
     {
-      // setInterval
-      if (this.requestId) clearInterval(this.requestId);
       this.requestId = setInterval(() => this.tick(), 1);
     }
+  }
+
+  /**
+   * stop
+   * 애니메이션 정지
+   *
+   * @param id
+   */
+  public stop(id: any)
+  {
+    if (!id) return;
+    if (this.useRequestAnimation) window.cancelAnimationFrame(id);
+    else clearInterval(id);
+  }
+
+  /**
+   * update request id
+   * 이전 애니메이션 취소를 위하여 `requestId`값을 업데이트 한다.
+   *
+   * @param {number} id
+   */
+  public updateRequestId(id: any):void
+  {
+    if (id) this.requestId = id;
   }
 
 }
 
 /**
  * auto writer wrapper
+ * 함수로 바로 사용하기위한 래퍼
  *
  * @param {string} keyword
  * @param {object} options
  * @param {Function} callback
+ * @param {core} instance
+ * @return {core}
  */
-function wrap(keyword?: string, options?: object, callback: Function = null): void
+function wrap(keyword?: string, options?: coreInterface, callback: Function = null, instance:any = null): core
 {
-  let instance = new core(options);
+  if (!instance) instance = new core(options);
   instance.run(keyword, callback);
+  return instance;
 }
 
 export default {
