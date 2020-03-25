@@ -31,8 +31,8 @@ const autoWriter = AutoWriter.core({
   speed: 2,
   // ...options
 });
-autoWriter.run('message text', (res, id) => {
-  console.log(res, id);
+autoWriter.run('message text', (res) => {
+  console.log(res);
 });
 ```
 
@@ -43,8 +43,8 @@ import * as AutoWriter from 'auto-writer';
 let instance = AutoWriter.wrap('message text', {
   speed: 2,
   // ...options
-}, function(res, id) {
-  console.log(res, id);
+}, function(res) {
+  console.log(res);
 });
 ```
 
@@ -58,7 +58,7 @@ let instance = AutoWriter.wrap('message text', {
 const autoWriter = AutoWriter.core({ speed: 2 });
 
 // function
-AutoWriter.wrap(message, { speed: 2 }, function(res, id) {}, null);
+AutoWriter.wrap(message, { speed: 2 }, function(res) {}, null);
 ```
 
 옵션의 목록은 다음과 같습니다.
@@ -97,27 +97,26 @@ autoWriter.updateOptions(options);
 
 ```javascript
 const autoWriter = new AutoWriter();
-autoWriter.run(message, callback, id);
+autoWriter.run(message, callback);
 ```
 
 - @param {string} message 사용할 텍스트 메시지
 - @param {Function} callback 매번 실행되는 콜백함수  
   콜백함수의 파라메터는 다음과 같습니다.  
   - @param {string|object} res 출력되는 값
-  - @param {number} id `requestAnimationFrame`이나 `setInterval`의 requestId값
 
 ### wrap
 
 객체를 생성하지 않고 바로 애니메이션을 실행합니다.
 
 ```javascript
-let instance = AutoWriter.wrap(message, options, callback, requestId);
+let instance = AutoWriter.wrap(message, options, callback, instance);
 ```
 
 - @param {string} message
 - @param {object} options
 - @param {Function} callback
-- @param {AutoWriter.core} 먼저 만들어진 인스턴스 객체
+- @param {AutoWriter.core} instance 먼저 만들어진 인스턴스 객체
 - @return {AutoWriter.core} `wrap()`메서드 내부에서 만들어진 인스턴스 객체를 그대로 리턴한다.
 
 
@@ -165,7 +164,7 @@ AutoWriter.wrap('가끔씩 여우비가 내리를 날에는 문득 기분이 설
   pattern: 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅉ',
   firstChar: '♨',
   exclude: [' '],
-}, function(res, id) {
+}, function(res) {
   $demo.innerHTML = res;
 });
 ```
