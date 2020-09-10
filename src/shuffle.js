@@ -1,14 +1,3 @@
-interface ShuffleInterface {
-  text: string;
-  waitChar?: string;
-  charSpeed?: number;
-  moveFix?: number;
-  moveRange?: number;
-  moveTrigger?: number;
-  fps?: number;
-  callback?;
-}
-
 /**
  * shuffle
  *
@@ -16,7 +5,7 @@ interface ShuffleInterface {
  * @param {Object} options
  * @return {void}
  */
-function shuffle($el:HTMLElement, options?:ShuffleInterface): void
+function shuffle($el, options)
 {
   // merge options
   options = Object.assign({}, {
