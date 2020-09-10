@@ -53,7 +53,7 @@ main {
   margin: 1rem 0;
   padding: 30px 24px;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 1px;
   background-color: #fff;
   box-shadow: 0 1px 16px rgba(0,0,0,.2);
   transition: box-shadow 200ms ease-out;
@@ -63,8 +63,8 @@ main {
 }
 .demo > p {
   margin: 0;
-  font-family: monospace;
-  font-size: 20px;
+  font-family: monospace, sans-serif;
+  font-size: 18px;
   line-height: 24px;
   color: #222;
   letter-spacing: -.5px;
@@ -85,7 +85,7 @@ main {
   background-color: #222;
   border: none;
   border-radius: 4px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 16px;
   color: #fff;
   text-transform: uppercase;
@@ -101,13 +101,14 @@ section {
   margin: 42px 0;
 }
 section > h2 {
-  margin: 0 0 -.75rem;
+  margin: 0;
   font-size: 24px;
+  line-height: 1.25;
   font-weight: 800;
 }
 section > p {
-  margin: 1rem 0;
-  font-size: 15px;
+  margin: 1px 0 0;
+  font-size: 13px;
 }
 
 /* github banner */

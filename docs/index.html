@@ -34,6 +34,26 @@
       <button type="button">Play</button>
     </nav>
   </section>
+  <section class="color">
+    <h2>Color</h2>
+    <p>무작위로 변하는 컬러를 통하여 애니메이션 됩니다.</p>
+    <div class="demo">
+      <p>A homesickness for a home you can't return to, or that never was.</p>
+    </div>
+    <nav class="nav">
+      <button type="button">Play</button>
+    </nav>
+  </section>
+  <section class="shuffle">
+    <h2>Shuffle</h2>
+    <p>다른 방식으로 동작하는 함수</p>
+    <div class="demo">
+      <p>A homesickness for a home you can't return to, or that never was.</p>
+    </div>
+    <nav class="nav">
+      <button type="button">Play</button>
+    </nav>
+  </section>
 </main>
 <a href="https://github.com/redgoose-dev/auto-writer" target="_blank" class="github-corner">
   <svg width="80" height="80" viewBox="0 0 250 250">
@@ -45,6 +65,27 @@
 
 <script src="./AutoWriter.js"></script>
 <script>
+function title()
+{
+  const $title = document.getElementById('title');
+  const message = $title.innerText;
+  const autoWriter = new AutoWriter.core({
+    speed: 3,
+    speedNext: 4,
+    offset: 4,
+    firstCharOffset: 0,
+    shuffle: true,
+    firstChar: '-',
+    exclude: [' '],
+  });
+
+  setInterval(function() {
+    autoWriter.run(message, function(res) {
+      $title.innerText = res;
+    });
+  }, 5000);
+}
+
 function english()
 {
   const $demo = document.querySelector('.english .demo > p');
@@ -53,7 +94,7 @@ function english()
   const autoWriter = new AutoWriter.core({
     speed: 2,
     speedNext: 5,
-    offset: 10,
+    offset: 12,
     firstCharOffset: 0,
     shuffle: true,
     firstChar: '~',
@@ -61,7 +102,7 @@ function english()
   });
   $button.addEventListener('click', function() {
     autoWriter.run(message, function(res) {
-      $demo.innerHTML = res;
+      $demo.innerText = res;
     });
   });
 }
@@ -83,35 +124,59 @@ function korean()
   });
   $button.addEventListener('click', function() {
     autoWriter.run(message, function(res) {
-      $demo.innerHTML = res;
+      $demo.innerText = res;
     });
   });
 }
 
-function title()
+function color()
 {
-  const $title = document.getElementById('title');
-  const message = $title.innerText;
+  const $demo = document.querySelector('.color .demo > p');
+  const $button = document.querySelector('.color .nav button');
+  const message = $demo.innerText;
   const autoWriter = new AutoWriter.core({
-    speed: 3,
-    speedNext: 6,
-    offset: 4,
-    firstCharOffset: 0,
-    shuffle: true,
+    speed: 2,
+    speedNext: 5,
+    offset: 12,
+    firstCharOffset: 18,
+    shuffle: false,
     firstChar: '-',
-    exclude: [' '],
+    exclude: [],
+    output: 'object',
   });
-
-  setInterval(function() {
+  $button.addEventListener('click', function() {
     autoWriter.run(message, function(res) {
-      $title.innerHTML = res;
+      $demo.innerHTML = '';
+      for (let i=0; i<res.length; i++)
+      {
+        let tag = document.createElement('span');
+        tag.append(res[i].label);
+        if (res[i].color) tag.style.color = res[i].color;
+        if (res[i].label === ' ') tag.classList.add('space');
+        $demo.append(tag);
+      }
     });
-  }, 12000);
+  });
 }
 
+function shuffle()
+{
+  const $demo = document.querySelector('.shuffle .demo > p');
+  const $button = document.querySelector('.shuffle .nav button');
+  const message = $demo.innerText;
+  $button.addEventListener('click', function() {
+    AutoWriter.shuffle($demo, {
+      text: $demo.innerText,
+    });
+  });
+}
+
+// action
 english();
 korean();
 title();
+color();
+shuffle();
 </script>
 </body>
 </html>

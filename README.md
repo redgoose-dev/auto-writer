@@ -188,3 +188,34 @@ document.querySelector('button').addEventListener('click', function() {
   }, instance);
 });
 ```
+
+
+## text shuffle
+
+다른 방식으로 만들어진 애니메이션 함수입니다.  
+제이쿼리 플러그인을 포팅했습니다.
+
+기초적인 사용법은 다음과 같습니다.
+
+```javascript
+import * as AutoWriter from 'auto-writer';
+AutoWriter.shuffle(document.querySelector('p'), {
+  text: 'message', // 최종적으로 표시되는 메시지
+  waitChar: '-', // 변경되기전에 표시되는 텍스트
+  charSpeed: 1, // 한번에 바뀌는 글자의 갯수
+  moveFix: 25, // 텍스트가 바뀌는 딜레이 시간
+  moveRange: 10, // 랜덤으로 글자가 바뀌고 있을때의 시간관련
+  moveTrigger: 25, // 랜덤으로 글자가 바뀌고 있을때의 시간관련
+  fps: 60, // speed
+  callback: null, // 애니메이션이 끝나고 실행되는 함수
+});
+```
+
+npm(yarn) 패키지로 설치되었을때 다음과 같이 함수만 따로 불러와서 사용할 수 있습니다.
+
+```javascript
+import textShuffle from 'auto-writer/src/shuffle';
+textShuffle(document.querySelector('p'), {
+  text: 'message',
+});
+```

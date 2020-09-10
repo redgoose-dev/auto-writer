@@ -10,7 +10,7 @@ function basic()
     offset: 10,
     firstCharOffset: 0,
     shuffle: false,
-    firstChar: '~',
+    firstChar: '-',
     exclude: [],
     output: 'object',
     //engine: 'setInterval', // requestAnimationFrame,setInterval
@@ -56,15 +56,33 @@ function wrapper()
       offset: 6,
       firstCharOffset: 0,
       shuffle: false,
-      firstChar: '~',
+      firstChar: '-',
       exclude: [' '],
+      engine: 'requestAnimationFrame',
+      // engine: 'setInterval',
     }, (res) => {
-      $demo.innerHTML = res;
+      $demo.innerText = res;
     }, instance);
   }
 
   // button event
   document.querySelector('.wrapper .nav button[name=play]').addEventListener('click', run);
+}
+
+function shuffle()
+{
+  const $demo = document.querySelector('.text-shuffle .demo-text');
+  const message = $demo.innerText;
+
+  function run()
+  {
+    AutoWriter.shuffle($demo, {
+      text: message,
+    });
+  }
+
+  // button event
+  document.querySelector('.text-shuffle .nav button[name=play]').addEventListener('click', run);
 }
 
 /**
@@ -74,6 +92,7 @@ function playground()
 {
   basic();
   wrapper();
+  shuffle();
 }
 
 // init event
