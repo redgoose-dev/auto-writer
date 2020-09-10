@@ -78,6 +78,8 @@ function shuffle()
   {
     AutoWriter.shuffle($demo, {
       text: message,
+      pattern: '1234567890',
+      randomTextType: 'unicode',
     });
   }
 

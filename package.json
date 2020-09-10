@@ -1,6 +1,6 @@
 {
   "name": "auto-writer",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "dist/AutoWriter.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",

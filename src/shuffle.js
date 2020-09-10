@@ -16,6 +16,8 @@ function shuffle($el, options)
     moveRange: 10, // 랜덤으로 글자가 바뀌고 있을때의 시간관련
     moveTrigger: 25, // 랜덤으로 글자가 바뀌고 있을때의 시간관련
     fps: 60, // speed
+    pattern: 'abcdefghijklmnopqrstuvwxyz0123456789-_!@#$%^&*()+~<>', // random text pattern
+    randomTextType: null, // unicode,pattern
     callback: null, // 애니메이션이 끝나고 실행되는 함수
   }, options);
   options.text = options.text.trim();
@@ -44,8 +46,19 @@ function shuffle($el, options)
         const selectKey = textKeys[tick];
         if (Math.abs(selectKey) <= options.moveTrigger)
         {
-          const unicode = Math.min(Math.max(options.text.charCodeAt(tick) + selectKey, 33), 126);
-          str += String.fromCharCode(unicode);
+          let txt = '';
+          switch(options.randomTextType)
+          {
+            case 'pattern':
+              txt = randomWord(options.pattern);
+              break;
+            case 'unicode':
+            default:
+              const unicode = Math.min(Math.max(options.text.charCodeAt(tick) + selectKey, 33), 126);
+              txt = String.fromCharCode(unicode);
+              break;
+          }
+          str += txt;
         }
         else
         {
@@ -82,6 +95,19 @@ function shuffle($el, options)
       $el.dataset.run = 'false';
       if (options.callback) options.callback();
     }
+  }
+
+  /**
+   * get random word
+   * 무작위 문자를 가져온다.
+   *
+   * @param {string} pattern
+   * @return {string}
+   */
+  function randomWord(pattern)
+  {
+    const n = Math.floor(Math.random() * pattern.length);
+    return pattern.substring(n, n + 1);
   }
 
   // play
