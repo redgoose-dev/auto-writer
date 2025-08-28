@@ -1,3 +1,8 @@
-.idea/
+# directories
 node_modules/
-yarn.lock
+_legacy/
+.idea/
+.vscode/
+
+# files
+.DS_Store
