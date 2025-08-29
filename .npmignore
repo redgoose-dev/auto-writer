@@ -13,4 +13,3 @@ vite.config/
 .npmignore
 bun.lock
 jsconfig.json
-README.md
