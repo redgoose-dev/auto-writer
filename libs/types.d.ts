@@ -13,7 +13,7 @@ declare module 'auto-writer' {
     fps?: number
     pattern?: string
     randomTextType?: 'unicode'|'pattern'|null
-    stream: Stream
+    stream?: Stream
   }
 
   // function
