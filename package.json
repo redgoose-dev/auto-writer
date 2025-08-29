@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "description": "",
   "type": "module",
-  "types": "types.d.ts",
+  "types": "libs/types.d.ts",
   "main": "libs/auto-writer.umd.js",
   "module": "libs/auto-writer.es.js",
   "exports": {
