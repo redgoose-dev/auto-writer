@@ -1,0 +1,16 @@
+.idea/
+.vscode/
+node_modules/
+docs/
+src/
+vite.config/
+
+.DS_Store
+.editorconfig
+.env
+.env.local
+.gitignore
+.npmignore
+bun.lock
+jsconfig.json
+README.md

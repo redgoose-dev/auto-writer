@@ -1,8 +1,8 @@
 # directories
 node_modules/
-_legacy/
 .idea/
 .vscode/
 
 # files
 .DS_Store
+.env.local

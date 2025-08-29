@@ -1,1 +1,44 @@
-{}
+{
+  "name": "auto-writer",
+  "version": "1.2.0",
+  "description": "",
+  "type": "module",
+  "types": "types.d.ts",
+  "main": "libs/auto-writer.umd.js",
+  "module": "libs/auto-writer.es.js",
+  "exports": {
+    ".": {
+      "import": "./libs/auto-writer.es.js",
+      "require": "./libs/auto-writer.umd.js"
+    }
+  },
+  "license": "MIT",
+  "author": {
+    "name": "GoOSe",
+    "email": "scripter@me.com",
+    "url": "https://redgoose.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redgoose-dev/auto-writer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redgoose-dev/auto-writer/issues/"
+  },
+  "homepage": "https://github.com/redgoose-dev/auto-writer/",
+  "scripts": {
+    "dev": "bun run --bun vite --config vite.config/docs.js",
+    "prebuild": "rm -rf ./docs && rm -rf ./libs",
+    "build": "bun run --bun vite build --emptyOutDir --config vite.config/docs.js && bun run --bun vite build --emptyOutDir --config vite.config/libs.js && cp src/types.d.ts libs",
+    "preview": "bun run --bun vite preview --config vite.config/docs.js",
+    "version-patch": "npm version patch"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "@types/bun": "^1.2.21",
+    "vite": "^7.1.3"
+  }
+}
