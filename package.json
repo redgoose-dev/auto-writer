@@ -1,6 +1,6 @@
 {
   "name": "auto-writer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "type": "module",
   "types": "types.d.ts",
