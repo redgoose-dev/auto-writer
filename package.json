@@ -1,17 +1,11 @@
 {
   "name": "auto-writer",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "",
   "type": "module",
   "types": "libs/types.d.ts",
   "main": "libs/auto-writer.umd.js",
   "module": "libs/auto-writer.es.js",
-  "exports": {
-    ".": {
-      "import": "./libs/auto-writer.es.js",
-      "require": "./libs/auto-writer.umd.js"
-    }
-  },
   "license": "MIT",
   "author": {
     "name": "GoOSe",
